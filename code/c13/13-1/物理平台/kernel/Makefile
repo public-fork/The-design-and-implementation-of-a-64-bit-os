@@ -26,12 +26,12 @@ system:	head.o entry.o APU_boot.o main.o printk.o trap.o memory.o interrupt.o PI
 	ld -b elf64-x86-64 -z muldefs -o system head.o entry.o APU_boot.o main.o printk.o trap.o memory.o interrupt.o PIC.o task.o cpu.o keyboard.o mouse.o disk.o SMP.o time.o HPET.o softirq.o timer.o schedule.o fat32.o -T Kernel.lds 
 
 head.o:	head.S
-	gcc -E head.S > head.s
-	as $(ASFLAGS) -o head.o head.s
+	gcc -E head.S > head.asm
+	as $(ASFLAGS) -o head.o head.asm
 
 entry.o: entry.S
-	gcc -E entry.S > entry.s
-	as $(ASFLAGS) -o entry.o entry.s
+	gcc -E entry.S > entry.asm
+	as $(ASFLAGS) -o entry.o entry.asm
 
 APU_boot.o: APU_boot.S
 	gcc -E APU_boot.S > APU_boot.s

@@ -20,12 +20,12 @@ system:	head.o entry.o main.o printk.o trap.o memory.o
 	ld -b elf64-x86-64 -z muldefs -o system head.o entry.o main.o printk.o trap.o memory.o -T Kernel.lds 
 
 head.o:	head.S
-	gcc -E  head.S > head.s
-	as --64 -o head.o head.s
+	gcc -E  head.S > head.asm
+	as --64 -o head.o head.asm
 
 entry.o: entry.S
-	gcc -E  entry.S > entry.s
-	as --64 -o entry.o entry.s
+	gcc -E  entry.S > entry.asm
+	as --64 -o entry.o entry.asm
 	
 main.o:	main.c
 	gcc  -mcmodel=large -fno-builtin -m64 -c main.c

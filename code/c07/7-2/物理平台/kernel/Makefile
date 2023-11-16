@@ -20,8 +20,8 @@ system:	head.o main.o
 	ld -b elf64-x86-64 -o system head.o main.o -T Kernel.lds 
 
 head.o:	head.S
-	gcc -E  head.S > head.s
-	as --64 -o head.o head.s
+	gcc -E  head.S > head.asm
+	as --64 -o head.o head.asm
 	
 main.o:	main.c
 	gcc  -mcmodel=large -fno-builtin -m64 -c main.c
